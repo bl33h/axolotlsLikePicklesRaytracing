@@ -10,16 +10,18 @@ Last modification: 21/11/2023
 #include "skybox.h"
 #include "SDL_image.h"
 
+// sonstructor
 Skybox::Skybox(const std::string& textureFile) {
     loadTexture(textureFile);
 }
 
+// destructor
 Skybox::~Skybox() {
     SDL_FreeSurface(texture);
 }
 
+// load skybox texture from file
 void Skybox::loadTexture(const std::string& textureFile) {
-
     SDL_Surface* rawTexture = IMG_Load(textureFile.c_str());
     if (!rawTexture) {
         throw std::runtime_error("Failed to load skybox texture: " + std::string(IMG_GetError()));
@@ -33,8 +35,8 @@ void Skybox::loadTexture(const std::string& textureFile) {
     SDL_FreeSurface(rawTexture);
 }
 
+// get color from skybox based on direction vector
 Color Skybox::getColor(const glm::vec3& direction) const {
-
     float phi = atan2(direction.z, direction.x);
     float theta = acos(direction.y);
     float u = 0.5f + phi / (2 * M_PI);
@@ -50,6 +52,5 @@ Color Skybox::getColor(const glm::vec3& direction) const {
     r = pixel[0];
     g = pixel[1];
     b = pixel[2];
-
     return Color(r, g, b);
 }
