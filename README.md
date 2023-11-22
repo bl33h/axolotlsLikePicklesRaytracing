@@ -16,7 +16,6 @@ It's a graphics application showcasing raytracing techniques. The project includ
 ## Files
 - main.cpp: The main application file handling game logic, input, and rendering.
 - resourceManager.h: Header file for the resource manager class.
-- raycaster.h: Header file for the Raycaster class.
 - colors.h: Header file defining color structures.
 - object.h: Header file defining the base Object class.
 - materials.h: Header file defining material structures.
@@ -36,7 +35,6 @@ The main features of the graphics application include:
 - Skybox rendering based on a provided texture file.
 - Sphere and Cube object representation with ray intersection calculations.
 - Camera for navigating the scene.
-- Raycaster for rendering a 3D scene using raycasting techniques.
 
 ## How To Use
 
