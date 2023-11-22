@@ -10,7 +10,7 @@ Last modification: 21/11/2023
 #include "skybox.h"
 #include "SDL_image.h"
 
-// sonstructor
+// constructor
 Skybox::Skybox(const std::string& textureFile) {
     loadTexture(textureFile);
 }
