@@ -113,3 +113,98 @@ Color castRay(const glm::vec3& rayOrigin, const glm::vec3& rayDirection, const s
     Color color = (diffuseLight + specularLight) * (1.0f - mat.reflectivity - mat.transparency) + reflectedColor * mat.reflectivity + refractedColor * mat.transparency;
     return color;
 }
+
+void createAxolotl() {
+    // face
+    objects.push_back(new Cube(glm::vec3(-1.3f, -1.3f, -2.5f), glm::vec3(2.0f, 1.0f, 0.4f), barbie));
+   
+    // left eye
+    objects.push_back(new Cube(glm::vec3(-1.0f, -0.3f, 0.4f), glm::vec3(-0.7f, -0.1f, 0.41f), carbon));
+    objects.push_back(new Cube(glm::vec3(-1.3f, -0.3f, 0.4f), glm::vec3(-1.0f, -0.1f, 0.41f), carbon));
+    objects.push_back(new Cube(glm::vec3(-1.0f, -0.45f, 0.4f), glm::vec3(-0.7f, -0.25f, 0.41f), carbon));
+    objects.push_back(new Cube(glm::vec3(-1.3f, -0.45f, 0.4f), glm::vec3(-1.0f, -0.25f, 0.41f), carbon));
+
+    // right eye
+    objects.push_back(new Cube(glm::vec3(1.4f, -0.3f, 0.4f), glm::vec3(1.7f, -0.1f, 0.41f), carbon));
+    objects.push_back(new Cube(glm::vec3(1.7f, -0.3f, 0.4f), glm::vec3(2.0f, -0.1f, 0.41f), carbon));
+    objects.push_back(new Cube(glm::vec3(1.4f, -0.45f, 0.4f), glm::vec3(1.7f, -0.25f, 0.41f), carbon));
+    objects.push_back(new Cube(glm::vec3(1.7f, -0.45f, 0.4f), glm::vec3(2.0f, -0.25f, 0.41f), carbon));
+
+    // smile
+    objects.push_back(new Cube(glm::vec3(0.2f, -0.5f, 0.4f), glm::vec3(0.6f, -0.3f, 0.41f), smile));
+    objects.push_back(new Cube(glm::vec3(0.2f, -0.45f, 0.4f), glm::vec3(0.6f, -0.25f, 0.41f), smile));
+
+    // body
+    objects.push_back(new Cube(glm::vec3(-1.0f, -1.3f, -5.5f), glm::vec3(1.0f, 0.5f, -2.5f), barbie));
+    objects.push_back(new Cube(glm::vec3(-1.001f, 0.5f, -5.5f), glm::vec3(1.001f, 0.5f, -5.3f), barbie));
+    objects.push_back(new Cube(glm::vec3(-1.001f, 0.5f, -5.3f), glm::vec3(1.001f, 0.5f, -4.0f), barbie));
+    objects.push_back(new Cube(glm::vec3(-1.001f, 0.5f, -5.5f), glm::vec3(1.001f, -0.1f, -5.3f), popsicle));
+    objects.push_back(new Cube(glm::vec3(-1.001f, -1.3f, -2.5f), glm::vec3(1.001f, -1.0f, -5.0f), carbon));
+    objects.push_back(new Cube(glm::vec3(-1.001f, -1.0f, -2.5f), glm::vec3(1.001f, -0.7f, -4.4f), smile));
+    objects.push_back(new Cube(glm::vec3(-1.001f, -1.0f, -2.5f), glm::vec3(1.001f, 0.5f, -2.8f), coal));
+    objects.push_back(new Cube(glm::vec3(-1.002f, -1.3f, -2.5f), glm::vec3(1.002f, -1.0f, -2.8f), barbie));
+    objects.push_back(new Cube(glm::vec3(-1.001f, 0.0f, -3.5f), glm::vec3(1.001f, 0.3f, -5.0f), rubber));
+    objects.push_back(new Cube(glm::vec3(-1.001f, -0.3f, -2.8f), glm::vec3(1.001f, -0.6f, -4.0f), barbie));
+
+    // tail
+    objects.push_back(new Cube(glm::vec3(-0.35f, -0.7f, -5.5f), glm::vec3(0.2f, 0.3f, -7.0f), barbie));
+    objects.push_back(new Cube(glm::vec3(-0.35f, -0.75f, -0.75f), glm::vec3(0.2f, 0.1f, -7.5f), popsicle));
+    objects.push_back(new Cube(glm::vec3(-0.35f, -0.5f, -0.75f), glm::vec3(0.2f, 0.0f, -7.8f), darkCoal));
+    objects.push_back(new Cube(glm::vec3(-0.35f, -0.2f, -0.75f), glm::vec3(0.2f, 0.0f, -8.0f), coal));
+
+    // right front leg
+    objects.push_back(new Cube(glm::vec3(-0.25f, -1.0f, -2.75f), glm::vec3(2.5f, -0.75f, -1.0f), popsicle));
+    objects.push_back(new Cube(glm::vec3(-0.25f, -1.0f, -2.75f), glm::vec3(2.5f, -0.75f, -3.0f), white));
+
+    // left front leg
+    objects.push_back(new Cube(glm::vec3(-2.0f, -1.0f, -2.75f), glm::vec3(2.5f, -0.75f, -1.0f), popsicle));
+    objects.push_back(new Cube(glm::vec3(-2.0f, -1.0f, -2.75f), glm::vec3(2.5f, -0.75f, -3.0f), smile));
+
+    // right back leg
+    objects.push_back(new Cube(glm::vec3(-0.25f, -1.0f, -4.75f), glm::vec3(2.5f, -0.75f, -5.0f), popsicle));
+    objects.push_back(new Cube(glm::vec3(-0.25f, -1.0f, -4.75f), glm::vec3(2.5f, -0.75f, -6.5f), white));
+
+    // left back leg
+    objects.push_back(new Cube(glm::vec3(-2.0f, -1.0f, -4.75f), glm::vec3(2.5f, -0.75f, -5.0f), popsicle));
+    objects.push_back(new Cube(glm::vec3(-2.0f, -1.0f, -4.75f), glm::vec3(2.5f, -0.75f, -6.5f), white));
+
+    // left ear
+    objects.push_back(new Cube(glm::vec3(-1.0f, 1.0f, -0.5f), glm::vec3(-0.3f, 1.4f, -0.2f), straw));
+    objects.push_back(new Cube(glm::vec3(-0.99f, 0.99f, -0.49f), glm::vec3(-0.299f, 1.39f, -0.23f), carbon));
+    // upper cube left
+    objects.push_back(new Cube(glm::vec3(-1.3f, 1.4f, -0.5f), glm::vec3(-0.6f, 1.8f, -0.2f), straw));
+    objects.push_back(new Cube(glm::vec3(-1.29f, 1.4f, -0.49f), glm::vec3(-0.59f, 1.79f, -0.23f), carbon));
+    // upper cube 2 left
+    objects.push_back(new Cube(glm::vec3(-1.6f, 1.8f, -0.5f), glm::vec3(-0.9f, 2.2f, -0.2f), straw));
+    objects.push_back(new Cube(glm::vec3(-1.59f, 1.79f, -0.49f), glm::vec3(-0.89f, 2.19f, -0.23f), carbon));
+
+    // right ear
+    objects.push_back(new Cube(glm::vec3(1.0f, 1.0f, -0.5f), glm::vec3(1.8f, 1.4f, -0.2f), straw));
+    objects.push_back(new Cube(glm::vec3(0.99f, 0.99f, -0.49f), glm::vec3(1.79f, 1.39f, -0.23f), carbon));
+    // upper cube right
+    objects.push_back(new Cube(glm::vec3(1.3f, 1.4f, -0.5f), glm::vec3(2.0f, 1.8f, -0.2f), straw));
+    objects.push_back(new Cube(glm::vec3(1.29f, 1.39f, -0.49f), glm::vec3(1.99f, 1.79f, -0.23f), carbon));
+    // upper cube 2 right
+    objects.push_back(new Cube(glm::vec3(1.6f, 1.8f, -0.5f), glm::vec3(2.3f, 2.2f, -0.2f), straw));
+    objects.push_back(new Cube(glm::vec3(1.59f, 1.79f, -0.49f), glm::vec3(2.29f, 2.19f, -0.23f), carbon));
+
+    // left gills up
+    objects.push_back(new Cube(glm::vec3(-1.0f, 0.5f, -0.5f), glm::vec3(-1.8f, 0.1f, -0.2f), darkCoal));
+    objects.push_back(new Cube(glm::vec3(-1.8f, 0.9f, -0.5f), glm::vec3(-2.2f, 0.5f, -0.2f), coal));
+    objects.push_back(new Cube(glm::vec3(-2.2f, 1.3f, -0.5f), glm::vec3(-2.6f, 0.9f, -0.2f), darkCoal));
+
+    // left gills down
+    objects.push_back(new Cube(glm::vec3(-1.0f, -0.5f, -0.5f), glm::vec3(-1.8f, -0.1f, -0.2f), darkCoal));
+    objects.push_back(new Cube(glm::vec3(-1.8f, -0.9f, -0.5f), glm::vec3(-2.2f, -0.5f, -0.2f), coal));
+    objects.push_back(new Cube(glm::vec3(-2.2f, -1.3f, -0.5f), glm::vec3(-2.6f, -0.9f, -0.2f), darkCoal));
+
+    // right gills up
+    objects.push_back(new Cube(glm::vec3(1.6f, 0.5f, -0.5f), glm::vec3(2.4f, 0.1f, -0.2f), darkCoal));
+    objects.push_back(new Cube(glm::vec3(2.4f, 0.9f, -0.5f), glm::vec3(2.8f, 0.5f, -0.2f), coal));
+    objects.push_back(new Cube(glm::vec3(2.8f, 1.3f, -0.5f), glm::vec3(3.2f, 0.9f, -0.2f), darkCoal));
+
+    // right gills down
+    objects.push_back(new Cube(glm::vec3(1.6f, -0.5f, -0.5f), glm::vec3(2.4f, -0.1f, -0.2f), darkCoal));
+    objects.push_back(new Cube(glm::vec3(2.4f, -0.9f, -0.5f), glm::vec3(2.8f, -0.5f, -0.2f), coal));
+    objects.push_back(new Cube(glm::vec3(2.8f, -1.3f, -0.5f), glm::vec3(3.2f, -0.9f, -0.2f), darkCoal));
+}
