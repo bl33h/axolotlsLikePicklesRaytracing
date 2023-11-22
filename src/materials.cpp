@@ -2,6 +2,7 @@
 Copyright (C), 2022-2023, Sara Echeverria (bl33h)
 @author Sara Echeverria
 FileName: materials.cpp
+@version: I
 Creation: 07/11/2023
 Last modification: 21/11/2023
 *Some parts were made using the AIs Bard and ChatGPT

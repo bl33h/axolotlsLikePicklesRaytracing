@@ -8,8 +8,8 @@ Last modification: 21/11/2023
 *Some parts were made using the AIs Bard and ChatGPT
 ------------------------------------------------------------------------------*/
 #pragma once
-#include "glm/glm.hpp"
 #include "colors.h"
+#include "glm/glm.hpp"
 
 struct Material {
     Color diffuse;
