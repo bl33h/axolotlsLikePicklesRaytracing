@@ -3,7 +3,7 @@ It's a graphics application showcasing raytracing techniques. The project includ
 
 <p align="center">
   <br>
-  <img src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExcGRoZ2JyazI0aWw3NjlvZHhmcDNueWt0N3BpYnMwYzRpZzZxNGxqaCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/Uj1BComkoSCwmRkSL2/giphy.gif" alt="pic" width="500">
+  <img src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExYW5zNnd0eHZpb3l2N2hzeDAwbHF2eWo5YWFnZHgweW5qbXBqNGFqOSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/wmWUe3Xy78WLBF5l31/giphy.gif" alt="pic" width="500">
   <br>
 </p>
 
