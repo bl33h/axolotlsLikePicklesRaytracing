@@ -1,5 +1,5 @@
 # axolotlsLikePicklesRaytracing
-It is a graphics application showcasing ray tracing techniques. The project includes the implementation of a resource manager for handling image loading and rendering, rendering of a skybox based on a provided texture file, and representation of spheres with ray intersection calculations.
+It's a graphics application showcasing raytracing techniques. The project includes the implementation of a resource manager for handling image loading and rendering, rendering of a skybox based on a provided texture file, and representation of spheres with ray intersection calculations.
 
 <p align="center">
   <br>
