@@ -26,10 +26,10 @@ To clone and run this application, you'll need [WSL (Windows Subsystem for Linux
 
 ```bash
 # Clone this repository
-$ git clone https://github.com/bl33h/deepDiveOdysseyRaycasting
+$ git clone https://github.com/bl33h/axolotlsLikePicklesRaytracing
 
 # Open the project
-$ cd deepDiveOdysseyRaycasting
+$ cd axolotlsLikePicklesRaytracing
 
 # Give execution permissions
 $ chmod +x configure.sh
