@@ -20,8 +20,13 @@ It is a graphics application showcasing ray tracing techniques. The project incl
 - skybox.h: Header file for the Skybox class.
 - sphere.cpp: Implementation file for the Sphere class.
 - sphere.h: Header file for the Sphere class.
+- cube.cpp: Implementation file for the Cube class.
+- cube.h: Header file for the Cube class.
+- camera.cpp: Implementation file for the Camera class.
+- camera.h: Header file for the Camera class.
 - colors.h: Header file defining color structures.
 - materials.h: Header file defining material structures.
+- object.h: Header file defining the base Object class.
   
 ## Features
 The main features of the graphics application include:
