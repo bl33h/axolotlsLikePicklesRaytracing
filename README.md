@@ -16,6 +16,10 @@ It is a graphics application showcasing ray tracing techniques. The project incl
 ## Files
 - main.cpp: The main application file handling game logic, input, and rendering.
 - resourceManager.h: Header file for the resource manager class.
+- colors.h: Header file defining color structures.
+- object.h: Header file defining the base Object class.
+- materials.h: Header file defining material structures.
+- materials.cpp: Implementation file for material-related functions.
 - skybox.cpp: Implementation file for the Skybox class.
 - skybox.h: Header file for the Skybox class.
 - sphere.cpp: Implementation file for the Sphere class.
@@ -24,10 +28,7 @@ It is a graphics application showcasing ray tracing techniques. The project incl
 - cube.h: Header file for the Cube class.
 - camera.cpp: Implementation file for the Camera class.
 - camera.h: Header file for the Camera class.
-- colors.h: Header file defining color structures.
-- materials.h: Header file defining material structures.
-- object.h: Header file defining the base Object class.
-  
+
 ## Features
 The main features of the graphics application include:
 - Implementation of a resource manager for handling image loading and rendering.
