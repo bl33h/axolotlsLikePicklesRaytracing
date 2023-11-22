@@ -47,15 +47,14 @@ class resourceManager {
 private:
     static std::map<std::string, SDL_Surface*> imageSurfaces;
 public:
-    // Initialize SDL_image
+
     static void init() {
-        int imgFlags = IMG_INIT_PNG; // or IMG_INIT_JPG, depending on your needs
+        int imgFlags = IMG_INIT_PNG;
         if (!(IMG_Init(imgFlags) & imgFlags)) {
             throw std::runtime_error("SDL_image could not initialize! SDL_image Error: " + std::string(IMG_GetError()));
         }
     }
 
-    // Load an image from a given path and store with a key
     static void loadImage(const std::string& key, const char* path) {
         SDL_Surface* newSurface = IMG_Load(path);
         if (!newSurface) {
@@ -64,7 +63,6 @@ public:
         imageSurfaces[key] = newSurface;
     }
 
-    // Get the color of the pixel at (x, y) from an image with a specific key
     static Color getPixelColor(const std::string& key, int x, int y) {
         auto it = imageSurfaces.find(key);
         if (it == imageSurfaces.end()) {
@@ -110,13 +108,11 @@ public:
 
         SDL_Surface* targetSurface = it->second;
 
-        // Convert surface to texture
         SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, targetSurface);
         if (!texture) {
             throw std::runtime_error("Unable to create texture from surface! SDL Error: " + std::string(SDL_GetError()));
         }
 
-        // Set render destination and render the texture
         SDL_Rect destRect;
         if (size == -1){
             destRect = { x, y, targetSurface->w, targetSurface->h };
@@ -125,11 +121,9 @@ public:
         }
         SDL_RenderCopy(renderer, texture, NULL, &destRect);
 
-        // Free the created texture
         SDL_DestroyTexture(texture);
     }
 
-    // Clean up
     static void cleanup() {
         for (auto& pair : imageSurfaces) {
             if (pair.second) {
