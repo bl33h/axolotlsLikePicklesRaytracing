@@ -318,8 +318,8 @@ int main(int argc, char* argv[]) {
     // initializations
     bool running = true;
     SDL_Event event;
-    Uint32 currentTime = startTime;
     Uint32 startTime = SDL_GetTicks();
+    Uint32 currentTime = startTime;
     renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
     setUp();
 
