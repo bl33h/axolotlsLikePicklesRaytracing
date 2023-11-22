@@ -17,10 +17,12 @@ Last modification: 21/11/2023
 #include "colors.h"
 #define vprint(var) print(#var ":", var)
 
+// helper function for printing a newline
 inline void print() {
     std::cout << std::endl;
 }
 
+// helper function for printing the first item in a series
 inline void printFirst(auto one, bool last = true) {
     std::cout << one;
     if (last) {
@@ -28,6 +30,7 @@ inline void printFirst(auto one, bool last = true) {
     }
 }
 
+// helper function for printing a series of items
 inline void print(auto first, auto... args) {
     printFirst(first, false);
 
@@ -39,6 +42,7 @@ inline void print(auto first, auto... args) {
     }
 }
 
+// helper function for printing a glm::vec3 vector
 inline void print(glm::vec3 v) {
     std::cout << "V3(" << v.x << ", " << v.y << "," << v.z << ")" << std::endl;
 }
@@ -46,29 +50,22 @@ inline void print(glm::vec3 v) {
 class resourceManager {
 private:
     static std::map<std::string, SDL_Surface*> imageSurfaces;
-public:
 
+public:
+    // initialize the SDL_image library
     static void init() {
         int imgFlags = IMG_INIT_PNG;
-        if (!(IMG_Init(imgFlags) & imgFlags)) {
-            throw std::runtime_error("SDL_image could not initialize! SDL_image Error: " + std::string(IMG_GetError()));
-        }
     }
 
+    // load an image from file and associate it with a key
     static void loadImage(const std::string& key, const char* path) {
         SDL_Surface* newSurface = IMG_Load(path);
-        if (!newSurface) {
-            throw std::runtime_error("Unable to load image! SDL_image Error: " + std::string(IMG_GetError()));
-        }
         imageSurfaces[key] = newSurface;
     }
 
+    // retrieve the color of a pixel from the specified image
     static Color getPixelColor(const std::string& key, int x, int y) {
         auto it = imageSurfaces.find(key);
-        if (it == imageSurfaces.end()) {
-            throw std::runtime_error("Image key not found!");
-        }
-
         SDL_Surface* targetSurface = it->second;
         int bpp = targetSurface->format->BytesPerPixel;
         Uint8 *p = (Uint8 *)targetSurface->pixels + y * targetSurface->pitch + x * bpp;
@@ -92,7 +89,7 @@ public:
                 pixelColor = *(Uint32 *)p;
                 break;
             default:
-                throw std::runtime_error("Unknown format!");
+                throw std::runtime_error("Unknown format !");
         }
 
         SDL_Color color;
@@ -100,6 +97,7 @@ public:
         return Color{color.r, color.g, color.b};
     }
 
+    // render the image onto the specified renderer
     static void render(SDL_Renderer* renderer, const std::string& key, int x, int y, int size = -1) {
         auto it = imageSurfaces.find(key);
         if (it == imageSurfaces.end()) {
@@ -124,6 +122,7 @@ public:
         SDL_DestroyTexture(texture);
     }
 
+    // cleanup resources
     static void cleanup() {
         for (auto& pair : imageSurfaces) {
             if (pair.second) {
@@ -135,4 +134,5 @@ public:
     }
 };
 
+// static initialization of the map
 std::map<std::string, SDL_Surface*> resourceManager::imageSurfaces;
