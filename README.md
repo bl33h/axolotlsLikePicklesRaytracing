@@ -32,7 +32,8 @@ It is a graphics application showcasing ray tracing techniques. The project incl
 The main features of the graphics application include:
 - Implementation of a resource manager for handling image loading and rendering.
 - Skybox rendering based on a provided texture file.
-- Sphere object representation with ray intersection calculations.
+- Sphere and Cube object representation with ray intersection calculations.
+- Camera for navigating the scene.
 
 ## How To Use
 
