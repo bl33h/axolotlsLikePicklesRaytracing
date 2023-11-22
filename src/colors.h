@@ -3,55 +3,54 @@ Copyright (C), 2022-2023, Sara Echeverria (bl33h)
 @author Sara Echeverria
 FileName: colors.h
 @version: I
-Creation: 06/07/2023
-Last modification: 11/07/2023
+Creation: 07/11/2023
+Last modification: 21/11/2023
 *Some parts were made using the AIs Bard and ChatGPT
 ------------------------------------------------------------------------------*/
-
 #pragma once
-
+#include <SDL.h>
 #include <algorithm>
 #include <iostream>
 
-template <typename T>
-constexpr const T& clamp(const T& value, const T& min, const T& max) {
-    return (value < min) ? min : ((value > max) ? max : value);
-}
-
 struct Color {
-    unsigned char r;
-    unsigned char g;
-    unsigned char b;
+    Uint8 r;
+    Uint8 g;
+    Uint8 b;
+    Uint8 a;
 
-    Color(unsigned char red = 0, unsigned char green = 0, unsigned char blue = 0)
-        : r(clamp(red, static_cast<unsigned char>(0), static_cast<unsigned char>(255))),
-          g(clamp(green, static_cast<unsigned char>(0), static_cast<unsigned char>(255))),
-          b(clamp(blue, static_cast<unsigned char>(0), static_cast<unsigned char>(255))) {}
+    Color() : r(0), g(0), b(0), a(255) {}
+
+    Color(int red, int green, int blue, int alpha = 255) {
+        r = static_cast<Uint8>(std::min(std::max(red, 0), 255));
+        g = static_cast<Uint8>(std::min(std::max(green, 0), 255));
+        b = static_cast<Uint8>(std::min(std::max(blue, 0), 255));
+        a = static_cast<Uint8>(std::min(std::max(alpha, 0), 255));
+    }
+
+    Color(float red, float green, float blue, float alpha = 1.0f) {
+        r = std::clamp(static_cast<Uint8>(red * 255), Uint8(0), Uint8(255));
+        g = std::clamp(static_cast<Uint8>(green * 255), Uint8(0), Uint8(255));
+        b = std::clamp(static_cast<Uint8>(blue * 255), Uint8(0), Uint8(255));
+        a = std::clamp(static_cast<Uint8>(alpha * 255), Uint8(0), Uint8(255));
+    }
 
     Color operator+(const Color& other) const {
         return Color(
-            std::min(static_cast<int>(r) + other.r, 255),
-            std::min(static_cast<int>(g) + other.g, 255),
-            std::min(static_cast<int>(b) + other.b, 255)
+                std::min(255, int(r) + int(other.r)),
+                std::min(255, int(g) + int(other.g)),
+                std::min(255, int(b) + int(other.b)),
+                std::min(255, int(a) + int(other.a))
         );
     }
 
     Color operator*(float factor) const {
         return Color(
-            clamp(static_cast<int>(r * factor), 0, 255),
-            clamp(static_cast<int>(g * factor), 0, 255),
-            clamp(static_cast<int>(b * factor), 0, 255)
+                std::clamp(static_cast<Uint8>(r * factor), Uint8(0), Uint8(255)),
+                std::clamp(static_cast<Uint8>(g * factor), Uint8(0), Uint8(255)),
+                std::clamp(static_cast<Uint8>(b * factor), Uint8(0), Uint8(255)),
+                std::clamp(static_cast<Uint8>(a * factor), Uint8(0), Uint8(255))
         );
     }
 
-    friend std::ostream& operator<<(std::ostream& os, const Color& color) {
-        os << "RGB(" << static_cast<int>(color.r) << ", "
-           << static_cast<int>(color.g) << ", "
-           << static_cast<int>(color.b) << ")";
-        return os;
-    }
-
-    friend Color operator*(float factor, const Color& color) {
-        return color * factor;
-    }
+    friend Color operator*(float factor, const Color& color);
 };
