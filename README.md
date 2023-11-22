@@ -1,5 +1,5 @@
 # axolotlsLikePicklesRaytracing
-T
+It is a graphics application showcasing ray tracing techniques. The project includes the implementation of a resource manager for handling image loading and rendering, rendering of a skybox based on a provided texture file, and representation of spheres with ray intersection calculations.
 
 <p align="center">
   <br>
@@ -15,10 +15,19 @@ T
 
 ## Files
 - main.cpp: The main application file handling game logic, input, and rendering.
+- resourceManager.h: Header file for the resource manager class.
+- skybox.cpp: Implementation file for the Skybox class.
+- skybox.h: Header file for the Skybox class.
+- sphere.cpp: Implementation file for the Sphere class.
+- sphere.h: Header file for the Sphere class.
+- colors.h: Header file defining color structures.
+- materials.h: Header file defining material structures.
   
 ## Features
 The main features of the graphics application include:
-
+- Implementation of a resource manager for handling image loading and rendering.
+- Skybox rendering based on a provided texture file.
+- Sphere object representation with ray intersection calculations.
 
 ## How To Use
 
