@@ -14,8 +14,10 @@ Last modification: 21/11/2023
 
 class Sphere : public Object {
 public:
+    // constructor: Initializes the sphere with the specified parameters
     Sphere(const glm::vec3& center, float radius, const Material& mat);
 
+    // checks for intersection between a ray and the sphere
     Intersect rayIntersect(const glm::vec3& rayOrigin, const glm::vec3& rayDirection) const override;
 
 private:
