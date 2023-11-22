@@ -31,10 +31,10 @@ It's a graphics application showcasing raytracing techniques. The project includ
 
 ## Features
 The main features of the graphics application include:
+- Camera for navigating the scene, allowing movement with keyboard keys and zooming in and out with the mouse wheel.
 - Implementation of a resource manager for handling image loading and rendering.
 - Skybox rendering based on a provided texture file.
 - Sphere and Cube object representation with ray intersection calculations.
-- Camera for navigating the scene.
 
 ## How To Use
 
