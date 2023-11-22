@@ -208,3 +208,111 @@ void createAxolotl() {
     objects.push_back(new Cube(glm::vec3(2.4f, -0.9f, -0.5f), glm::vec3(2.8f, -0.5f, -0.2f), coal));
     objects.push_back(new Cube(glm::vec3(2.8f, -1.3f, -0.5f), glm::vec3(3.2f, -0.9f, -0.2f), darkCoal));
 }
+
+void setUp() {
+    createAxolotl();
+}
+
+void render() {
+    float fov = 3.1415/3;
+    for (int y = 0; y < SCREEN_HEIGHT; y++) {
+        for (int x = 0; x < SCREEN_WIDTH; x++) {
+
+            float random_value = static_cast<float>(std::rand())/static_cast<float>(RAND_MAX);
+            if (random_value < 0.0 ) {
+                continue;
+            }
+
+            float screenX = (2.0f * (x + 0.5f)) / SCREEN_WIDTH - 1.0f;
+            float screenY = -(2.0f * (y + 0.5f)) / SCREEN_HEIGHT + 1.0f;
+            screenX *= ASPECT_RATIO;
+            screenX *= tan(fov/2.0f);
+            screenY *= tan(fov/2.0f);
+
+            glm::vec3 cameraDir = glm::normalize(camera.target - camera.position);
+            glm::vec3 cameraX = glm::normalize(glm::cross(cameraDir, camera.up));
+            glm::vec3 cameraY = glm::normalize(glm::cross(cameraX, cameraDir));
+            glm::vec3 rayDirection = glm::normalize(
+                    cameraDir + cameraX * screenX + cameraY * screenY
+            );
+
+            Color pixelColor = castRay(camera.position, rayDirection);
+            point(glm::vec2(x, y), pixelColor);
+        }
+    }
+}
+
+int main(int argc, char* argv[]) {
+    if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0) {
+        printf("SDL_mixer could not initialize! SDL_mixer Error: %s\n", Mix_GetError());
+        return -1;
+    }
+
+    Mix_Music* music = Mix_LoadMUS("src/assets/sounds/cards.wav");
+    if (music == NULL) {
+        printf("Failed to load music! SDL_mixer Error: %s\n", Mix_GetError());
+        return -1;
+    }
+
+    Mix_PlayMusic(music, -1);
+
+    SDL_Window* window = SDL_CreateWindow("Axolotls Like Pickles - Raytracing by bl33h",
+        SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
+        SCREEN_WIDTH, SCREEN_HEIGHT,
+        SDL_WINDOW_SHOWN);
+
+    renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
+    bool running = true;
+    SDL_Event event;
+    int frameCount = 0;
+    Uint32 startTime = SDL_GetTicks();
+    Uint32 currentTime = startTime;
+    setUp();
+
+    while (running) {
+        while (SDL_PollEvent(&event)) {
+            if (event.type == SDL_QUIT) {
+                running = false;
+            }
+
+            if (event.type == SDL_KEYDOWN) {
+                switch(event.key.keysym.sym) {
+                    case SDLK_UP:
+                        camera.rotate(0.0f, 1.0f);
+                        break;
+                    case SDLK_DOWN:
+                        camera.rotate(0.0f, -1.0f);
+                        break;
+                    case SDLK_LEFT:
+                        camera.rotate(-1.0f, 0.0f);
+                        break;
+                    case SDLK_RIGHT:
+                        camera.rotate(1.0f, 0.0f);
+                        break;
+                    case SDLK_w:
+                        camera.move(1.0f);
+                        break;
+                    case SDLK_s:
+                        camera.move(-1.0f);
+                        break;
+                }
+            }
+
+            if (event.type == SDL_MOUSEWHEEL) {
+            camera.processMouseScroll(event.wheel.y);
+            }
+        }
+
+        SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+        SDL_RenderClear(renderer);
+        render();
+        SDL_RenderPresent(renderer);       
+    }
+
+    Mix_FreeMusic(music);
+    Mix_CloseAudio();
+    SDL_DestroyRenderer(renderer);
+    SDL_DestroyWindow(window);
+    SDL_Quit();
+    return 0;
+}
