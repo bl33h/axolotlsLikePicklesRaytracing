@@ -27,18 +27,21 @@ Last modification: 21/11/2023
 #include "glm/ext/matrix_transform.hpp"
 #include "glm/ext/quaternion_geometric.hpp"
 
+// constants
 const int SCREEN_WIDTH = 900;
 const int SCREEN_HEIGHT = 650;
 const float ASPECT_RATIO = static_cast<float>(SCREEN_WIDTH) / static_cast<float>(SCREEN_HEIGHT);
 const int MAX_RECURSION = 3;
 const float BIAS = 0.0001f;
 
+// function prototypes
 SDL_Renderer* renderer;
 std::vector<Object*> objects;
+Skybox skybox("src/assets/background/bck.png");
 Light light(glm::vec3(-20.0, -30, 30), 1.5f, Color(255, 255, 255));
 Camera camera(glm::vec3(0.0, 0.0, 15.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f), 10.0f, 1.0f);
-Skybox skybox("src/assets/background/bck.png");
 
+// implementation of shadow casting logic
 float castShadow(const glm::vec3& shadowOrigin, const glm::vec3& lightDir, Object* hitObject) {
     for (auto& obj : objects) {
         if (obj != hitObject) {
@@ -50,14 +53,16 @@ float castShadow(const glm::vec3& shadowOrigin, const glm::vec3& lightDir, Objec
             }
         }
     }
-    return 1.0f;
+    return 1.0f; // placeholder value
 }
 
+// implementation of point drawing logic
 void point(glm::vec2 position, Color color) {
     SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, color.a);
     SDL_RenderDrawPoint(renderer, position.x, position.y);
 }
 
+// implementation of ray casting logic
 Color castRay(const glm::vec3& rayOrigin, const glm::vec3& rayDirection, const short recursion = 0) {
     float zBuffer = 99999;
     Object* hitObject = nullptr;
@@ -81,13 +86,11 @@ Color castRay(const glm::vec3& rayOrigin, const glm::vec3& rayDirection, const s
         return skybox.getColor(rayDirection);  // Sky color
     }
 
-
     glm::vec3 lightDir = glm::normalize(light.position - intersect.point);
     glm::vec3 viewDir = glm::normalize(rayOrigin - intersect.point);
     glm::vec3 reflectDir = glm::reflect(-lightDir, intersect.normal);
 
     float shadowIntensity = castShadow(intersect.point, lightDir, hitObject);
-
     float diffuseLightIntensity = std::max(0.0f, glm::dot(intersect.normal, lightDir));
     float specReflection = glm::dot(viewDir, reflectDir);
 
@@ -111,9 +114,10 @@ Color castRay(const glm::vec3& rayOrigin, const glm::vec3& rayDirection, const s
     Color diffuseLight = mat.diffuse * light.intensity * diffuseLightIntensity * mat.albedo * shadowIntensity;
     Color specularLight = light.color * light.intensity * specLightIntensity * mat.specularAlbedo * shadowIntensity;
     Color color = (diffuseLight + specularLight) * (1.0f - mat.reflectivity - mat.transparency) + reflectedColor * mat.reflectivity + refractedColor * mat.transparency;
-    return color;
+    return color; // placeholder value
 }
 
+// axolotl properties to draw block by block
 void createAxolotl() {
     // face
     objects.push_back(new Cube(glm::vec3(-1.3f, -1.3f, -2.5f), glm::vec3(2.0f, 1.0f, 0.4f), barbie));
@@ -209,6 +213,7 @@ void createAxolotl() {
     objects.push_back(new Cube(glm::vec3(2.8f, -1.3f, -0.5f), glm::vec3(3.2f, -0.9f, -0.2f), darkCoal));
 }
 
+// pickles properties to draw block by block
 void createPickles() {
 // pickle 1
     // left
@@ -253,11 +258,13 @@ void createPickles() {
     objects.push_back(new Cube(glm::vec3(5.7f, -0.3f, -1.25f), glm::vec3(5.2f, 0.2f, -1.0f), lights));
 }
 
+// void method that calls the two figures of the scene
 void setUp() {
     createAxolotl();
     createPickles();
 }
 
+// implementation of rendering logic
 void render() {
     float fov = 3.1415/3;
     for (int y = 0; y < SCREEN_HEIGHT; y++) {
@@ -288,6 +295,7 @@ void render() {
 }
 
 int main(int argc, char* argv[]) {
+    // SDL and SDL_mixer initialization
     if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0) {
         printf("SDL_mixer could not initialize! SDL_mixer Error: %s\n", Mix_GetError());
         return -1;
@@ -301,25 +309,28 @@ int main(int argc, char* argv[]) {
 
     Mix_PlayMusic(music, -1);
 
+    // SDL window creation
     SDL_Window* window = SDL_CreateWindow("Axolotls Like Pickles - Raytracing by bl33h",
         SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
         SCREEN_WIDTH, SCREEN_HEIGHT,
         SDL_WINDOW_SHOWN);
 
-    renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
+    // initializations
     bool running = true;
     SDL_Event event;
-    int frameCount = 0;
-    Uint32 startTime = SDL_GetTicks();
     Uint32 currentTime = startTime;
+    Uint32 startTime = SDL_GetTicks();
+    renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
     setUp();
 
+    // main loop
     while (running) {
         while (SDL_PollEvent(&event)) {
             if (event.type == SDL_QUIT) {
                 running = false;
             }
 
+            // keys camera movement
             if (event.type == SDL_KEYDOWN) {
                 switch(event.key.keysym.sym) {
                     case SDLK_UP:
@@ -343,6 +354,7 @@ int main(int argc, char* argv[]) {
                 }
             }
 
+            // mousewheel zoom
             if (event.type == SDL_MOUSEWHEEL) {
             camera.processMouseScroll(event.wheel.y);
             }
