@@ -12,16 +12,21 @@ Last modification: 21/11/2023
 
 class Camera {
 public:
-    glm::vec3 position;
-    glm::vec3 target;
-    glm::vec3 up;
+    // camera properties
+    glm::vec3 position; //camera position in 3D space
+    glm::vec3 target; // point the camera is looking at
+    glm::vec3 up; // up vector for camera orientation
 
-    float rotationSpeed;
-    float zoomSpeed;
+    // camera control parameters
+    float rotationSpeed; // speed of rotation for camera
+    float zoomSpeed; // speed of zooming for camera
 
+    // constructor to initialize camera with position, target, up vector, rotation speed, and zoom speed
     Camera(glm::vec3 position, glm::vec3 target, glm::vec3 up, float rotationSpeed, float zoomSpeed);
-    void zoom(float deltaZoom);
-    void rotate(float deltaX, float deltaY);
-    void move(float deltaZ);
-    void processMouseScroll(float yOffset);
+
+    // camera operations
+    void zoom(float deltaZoom); // zoom the camera
+    void rotate(float deltaX, float deltaY); // rotate the camera
+    void move(float deltaZ); // move the camera
+    void processMouseScroll(float yOffset); // process mouse scroll for zoom
 };
