@@ -9,16 +9,18 @@ Last modification: 21/11/2023
 ------------------------------------------------------------------------------*/
 #include "sphere.h"
 
+// constructor: Initializes the sphere with the specified parameters
 Sphere::Sphere(const glm::vec3& center, float radius, const Material& mat)
-        : center(center), radius(radius), Object(mat) {}
+    : center(center), radius(radius), Object(mat) {}
 
+// checks for intersection between a ray and the sphere
 Intersect Sphere::rayIntersect(const glm::vec3& rayOrigin, const glm::vec3& rayDirection) const {
     glm::vec3 oc = rayOrigin - center;
 
+    // constants (colors)
     float a = glm::dot(rayDirection, rayDirection);
     float b = 2.0f * glm::dot(oc, rayDirection);
     float c = glm::dot(oc, oc) - radius * radius;
-
     float discriminant = b * b - 4 * a * c;
 
     if (discriminant < 0) {
