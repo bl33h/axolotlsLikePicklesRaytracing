@@ -209,8 +209,53 @@ void createAxolotl() {
     objects.push_back(new Cube(glm::vec3(2.8f, -1.3f, -0.5f), glm::vec3(3.2f, -0.9f, -0.2f), darkCoal));
 }
 
+void createPickles() {
+// pickle 1
+    // left
+    objects.push_back(new Cube(glm::vec3(-5.0f, -4.7f, -0.5f), glm::vec3(-5.3f, -0.3f, -0.2f), mold));
+    objects.push_back(new Cube(glm::vec3(-5.0f, -4.7f, -1.0f), glm::vec3(-5.3f, -0.3f, -0.2f), mold));
+    objects.push_back(new Cube(glm::vec3(-5.0f, -4.7f, -1.5f), glm::vec3(-5.3f, -0.3f, -0.2f),grass));
+
+    // right
+    objects.push_back(new Cube(glm::vec3(-6.0f, -4.7f, -0.5f), glm::vec3(-6.3f, -0.3f, -0.2f), grass));
+    objects.push_back(new Cube(glm::vec3(-6.0f, -4.7f, -1.0f), glm::vec3(-6.3f, -0.3f, -0.2f), mold));
+    objects.push_back(new Cube(glm::vec3(-6.0f, -4.7f, -1.5f), glm::vec3(-6.3f, -0.3f, -0.2f), grass));
+
+    // front
+    objects.push_back(new Cube(glm::vec3(-4.9f, -4.7f, -0.25f), glm::vec3(-6.0f, -0.3f, 0.0f), mold));
+
+    //back
+    objects.push_back(new Cube(glm::vec3(-4.9f, -4.7f, -1.75f), glm::vec3(-6.0f, -0.3f, -1.5f), grass));
+
+    // light
+    objects.push_back(new Cube(glm::vec3(-6.0f, -0.3f, -0.75f), glm::vec3(-5.5f, 0.2f, -0.5f), lights));
+    objects.push_back(new Cube(glm::vec3(-5.7f, -0.3f, -1.25f), glm::vec3(-5.2f, 0.2f, -1.0f), lights));
+
+// pickle 2
+    // left
+    objects.push_back(new Cube(glm::vec3(5.0f, -4.7f, -0.5f), glm::vec3(5.3f, -0.3f, -0.2f), grass));
+    objects.push_back(new Cube(glm::vec3(5.0f, -4.7f, -1.0f), glm::vec3(5.3f, -0.3f, -0.2f), mold));
+    objects.push_back(new Cube(glm::vec3(5.0f, -4.7f, -1.5f), glm::vec3(5.3f, -0.3f, -0.2f), grass));
+
+    // right
+    objects.push_back(new Cube(glm::vec3(6.0f, -4.7f, -0.5f), glm::vec3(6.3f, -0.3f, -0.2f), mold));
+    objects.push_back(new Cube(glm::vec3(6.0f, -4.7f, -1.0f), glm::vec3(6.3f, -0.3f, -0.2f), grass));
+    objects.push_back(new Cube(glm::vec3(6.0f, -4.7f, -1.5f), glm::vec3(6.3f, -0.3f, -0.2f), mold));
+
+    // front
+    objects.push_back(new Cube(glm::vec3(4.9f, -4.7f, -0.25f), glm::vec3(6.0f, -0.3f, 0.0f), grass));
+
+    // back
+    objects.push_back(new Cube(glm::vec3(4.9f, -4.7f, -1.75f), glm::vec3(6.0f, -0.3f, -1.5f), mold));
+
+    // light
+    objects.push_back(new Cube(glm::vec3(6.0f, -0.3f, -0.75f), glm::vec3(5.5f, 0.2f, -0.5f), lights));
+    objects.push_back(new Cube(glm::vec3(5.7f, -0.3f, -1.25f), glm::vec3(5.2f, 0.2f, -1.0f), lights));
+}
+
 void setUp() {
     createAxolotl();
+    createPickles();
 }
 
 void render() {
