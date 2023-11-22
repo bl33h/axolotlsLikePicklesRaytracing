@@ -10,6 +10,7 @@ Last modification: 21/11/2023
 #include "colors.h"
 #include "materials.h"
 
+// rubber material properties
 Material rubber = {
     Color(155, 155, 155),
     0.9,
@@ -19,6 +20,7 @@ Material rubber = {
     0.0f
 };
 
+// grass material properties
 Material grass = {
     Color(57, 89, 123),
     0.9,
@@ -28,6 +30,7 @@ Material grass = {
     0.4f
 };
 
+// mold material properties
 Material mold = {
     Color(0, 90, 118),
     0.9,
@@ -37,6 +40,7 @@ Material mold = {
     0.0f
 };
 
+// lights material properties
 Material lights = {
     Color(224, 166, 79),
     0.5,
@@ -46,6 +50,7 @@ Material lights = {
     0.4f
 };
 
+// carbon material properties
 Material carbon = {
     Color(54, 13, 65),
     0.9,
@@ -55,6 +60,7 @@ Material carbon = {
     0.0f
 };
 
+// smile material properties
 Material smile = {
     Color(112, 60, 86),
     0.9,
@@ -64,6 +70,7 @@ Material smile = {
     0.0f
 };
 
+// barbie material properties
 Material barbie = {
     Color(251, 200, 233),
     0.9,
@@ -73,6 +80,7 @@ Material barbie = {
     0.0f,
 };
 
+// popsicle material properties
 Material popsicle = {
     Color(252, 194, 230),
     0.9,
@@ -82,6 +90,7 @@ Material popsicle = {
     0.0f,
 };
 
+// straw material properties
 Material straw = {
     Color(255, 192, 189),
     0.7,
@@ -91,6 +100,7 @@ Material straw = {
     0.1f
 };
 
+// coal material properties
 Material coal = {
     Color(255, 192, 189),
     0.5,
@@ -100,6 +110,7 @@ Material coal = {
     0.4f
 };
 
+// dark Coal material properties
 Material darkCoal = {
     Color(255, 192, 189),
     0.5,
@@ -109,11 +120,12 @@ Material darkCoal = {
     0.4f
 };
 
+// white material properties
 Material white = {
-Color(170, 170, 170),
-0.9,
-0.1,
-10.0f,
-0.0f,
-0.0f
+    Color(170, 170, 170),
+    0.9,
+    0.1,
+    10.0f,
+    0.0f,
+    0.0f
 };
